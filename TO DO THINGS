@@ -1,0 +1,17 @@
+make the web which can able to sort the url
+like bittly:
+And also keep track of the total visits of url
+
+
+Routes:
+POST:to upload the url
+GET/:id:REDIRECT TO THE ORIGINAL url
+GET/URL/analytics/:id-returns the click for the provided url id:
+
+
+
+----------------------------------------removels of the home page----------------------------------------
+<h1>here is all of the urls:</h1>
+    <% urls.forEach(url => { %>
+        <li><%= url.sortid %></li>
+    <% }) %>
