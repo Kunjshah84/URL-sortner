@@ -15,3 +15,16 @@ GET/URL/analytics/:id-returns the click for the provided url id:
     <% urls.forEach(url => { %>
         <li><%= url.sortid %></li>
     <% }) %>
+
+----------------------------------------authentication----------------------------------------
+if the user login in the website then the user is going to give the pass and the user name and in the reward back the server give them 
+the uid which is called the session uid:
+and the server is making the mapping of the user with the peopertieS:
+
+and the uid is going to share with the user in thers three types of mode:
+cookie
+responce And
+headers:
+
+
+and the servieses like all the shorted link has been shown that can only for the user which has been loged in!

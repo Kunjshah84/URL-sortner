@@ -7,6 +7,7 @@ import urlrouter from "./routes/url.js";
 import  connect  from "./connection.js";
 import url from "./models/user.js"
 import staticrouter from "./routes/staticrouter.js"
+import signuprouter from './routes/userauth.js'
 
 app.set('view engine' , 'ejs')
 app.set('views' , path.resolve('./views'))
@@ -42,6 +43,7 @@ app.use(express.urlencoded({extended:false}))
 app.use("/url", urlrouter); // Corrected the route registration
 
 app.use("/",staticrouter)
+app.use("/user" , signuprouter)
 
 app.listen(port, () => {
     console.log(`The server has been started on port ${port}`);
