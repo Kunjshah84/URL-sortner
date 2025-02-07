@@ -9,7 +9,19 @@ async function handleusersignup(req,res){
         email:email,
         password:password
     })
-    return res.status(200).render('home')
+    return res.status(200).render('/')
 }
 
-export {handleusersignup}
+async function handleuserslogin(req,res){
+    const {email , password} = req.body;
+    //Now here we can do the validations:
+    const user=await users.find({
+        email , password
+    })
+    if(user)    return res.render('login' , {
+        error : 'Invalide mail or password'
+    })
+    return res.redirect('/')
+}
+
+export {handleusersignup,handleuserslogin}
