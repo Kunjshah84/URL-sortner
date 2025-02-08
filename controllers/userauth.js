@@ -1,27 +1,36 @@
 
 import users from '../models/userauth.js'
+import { v4 as uuidv4 } from 'uuid';
+import {setuser, getuser} from '../service/auth.js'
+
 
 async function handleusersignup(req,res){
     const {name , email , password} = req.body;
     //Now here we can do the validations:
     await users.create({
         name: name,
-        email:email,
-        password:password
+        email : email,
+        password : password
     })
-    return res.status(200).render('/')
+    return res.status(200).redirect('/')
 }
 
 async function handleuserslogin(req,res){
     const {email , password} = req.body;
     //Now here we can do the validations:
-    const user=await users.find({
-        email , password
+    // console.log(email , password);
+    const user=await users.findOne({
+        email : email ,
+        password : password
     })
-    if(user)    return res.render('login' , {
+    // console.log(user)
+    if(!user)    return res.render('login' , {
         error : 'Invalide mail or password'
     })
-    return res.redirect('/')
+    const sessionid=uuidv4() 
+    setuser(sessionid , user)
+    res.cookie('uid' , sessionid)
+    return res.status(200).redirect('/')
 }
 
 export {handleusersignup,handleuserslogin}

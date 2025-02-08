@@ -9,6 +9,10 @@ import url from "./models/user.js"
 import staticrouter from "./routes/staticrouter.js"
 import signuprouter from './routes/userauth.js'
 
+//In order to parse anwd use cookies in our code:
+import cookiesparser from 'cookie-parser'
+import {redirecttologgieduseronly , checkauth} from './middlewares/auth.js'
+
 app.set('view engine' , 'ejs')
 app.set('views' , path.resolve('./views'))
 
@@ -20,6 +24,7 @@ connect("mongodb://127.0.0.1:27017/short-url")
 
 app.use(express.json());
 app.use(express.urlencoded({extended:false}))
+app.use(cookiesparser())
 
 // app.get('/test' ,async (req , res) => {
 //     const allurls=await url.find({})
@@ -40,9 +45,9 @@ app.use(express.urlencoded({extended:false}))
 // })
 
 
-app.use("/url", urlrouter); // Corrected the route registration
+app.use("/url", redirecttologgieduseronly ,urlrouter); // Corrected the route registration
 
-app.use("/",staticrouter)
+app.use("/", checkauth ,staticrouter)
 app.use("/user" , signuprouter)
 
 app.listen(port, () => {

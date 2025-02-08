@@ -15,7 +15,8 @@ async function handlegenerateurlshortnerurl(req, res) {
     const newcreated = await url.create({
         sortid: newid,
         redirectul: body.url,
-        visithistory: []
+        visithistory: [],
+        createdby : req.user._id
     });
     // console.log(newcreated);
     // return res.status(200).json({ id: newid });
@@ -36,12 +37,12 @@ async function gettherealurl(req, res) {
     // console.log(changed + "and the furl is" + furl);
     res.status(200).redirect(changed.redirectul)
 }
-
+ 
 async function handletheanalysis(req, res) {
     const jenamatejovuchee = req.params.shortedurl
     const finded = await url.findOne({
         sortid: jenamatejovuchee
-    })
+    }) 
     res.status(200).json({ totalclicksontheurl: `${finded.visithistory.length}` })
 }
 
