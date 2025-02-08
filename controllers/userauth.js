@@ -7,7 +7,7 @@ import {setuser, getuser} from '../service/auth.js'
 async function handleusersignup(req,res){
     const {name , email , password} = req.body;
     //Now here we can do the validations:
-    await users.create({
+    const user = await users.create({
         name: name,
         email : email,
         password : password
