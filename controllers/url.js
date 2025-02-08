@@ -1,11 +1,13 @@
 import { nanoid } from "nanoid";
+import {setuser , getuser} from '../service/auth.js'
 import url from "../models/user.js";
 
 async function handlegenerateurlshortnerurl(req, res) {
     const body = req.body;
     if (!body.url) return res.status(400).json({ status: "Bhia url to nakh" });
     const obj = await url.findOne({ redirectul: body.url });
-    const allurls = await url.find({})
+    const user=getuser(req.cookies?.uid)    
+    const allurls = await url.find({ createdby : user._id })
     if (obj) return res.render('home', {
         sortid: obj.sortid,
         status: 'same url',
