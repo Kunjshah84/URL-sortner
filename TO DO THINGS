@@ -29,3 +29,16 @@ headers:
 ------------------------------------------What we want in the code----------------------------------------------------------------------
 and the servieses like all the shorted link has been shown that can only for the user which has been loged in!
 if the user has already loged in then and then the table of the home ejs has to show:
+
+
+------------------------------------------Statelesss------------------------------------
+in the state full we have to use the storage of server and if we restart the server then all of the user is going for the log out;
+so we Jumo on the Statelesss
+Staeless:
+have apade je gadi ni tocken apiye che emaj muki daiye che map ke bhai a che tari id and ena mate ni uuid:
+and after that we are going to make the stamp that no one can able to change this map:  
+
+
+
+----------------------------------------The crazy thing about cookies:------------------------------------------------------------
+cookies are domain specific:

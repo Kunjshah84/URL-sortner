@@ -7,8 +7,11 @@ import {getuser} from '../service/auth.js'
 //And after that we have to amintain the thig that if i have on my home then i can only show the url which is gererated by me 
 
 async function redirecttologgieduseronly(req,res,next) {
+    // const useruid = req.headers["authorization"]; 
     const useruid = req.cookies?.uid; 
     if(!useruid)    return res.redirect('/user/login')
+    // const token=useruid.split('Bearer ')[1]
+    // const user= await getuser(token)
     const user= await getuser(useruid)
     if(!user)   return res.redirect('/user/login')
     req.user=user
@@ -17,9 +20,13 @@ async function redirecttologgieduseronly(req,res,next) {
 
 //We are going to make the closure:
 async function checkauth(req,res,next) {
+    // const useruid = req.headers["authorization"]; 
+    // const token=useruid.split('Bearer ')[1]
     const useruid = req.cookies?.uid; 
     const user= await getuser(useruid)
+    // const user= await getuser(token)
     req.user=user
+    console.log(user);
     next()
 }
 
