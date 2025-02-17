@@ -16,6 +16,7 @@ async function handleusersignup(req,res){
 }
 
 async function handleuserslogin(req,res){
+    // console.log("Into the part of the handleuser");
     const {email , password} = req.body;
     //Now here we can do the validations:
     // console.log(email , password);
@@ -36,12 +37,14 @@ async function handleuserslogin(req,res){
     //     specified here;
     // })
     //And we can even set the expire date of the cookie:
-    res.cookie('uid' , token)
-    // return res.json({token})
+    
+    // res.cookie('uid' , token)
+
+    return res.json({ token })
     //And now we have two ways to send the tocken:
     // 1->>is to send through the cookie and it is going to set for every res and req
     // 2->>we have to manually set the token in the header of the res
-    return res.status(200).redirect('/')
+    // return res.status(200).redirect('/')
 
     //And the problem with cookie is that we can not use in rest api:
     //And in order to send the tocken and make them work in the mobile we can do this by sending the responce to the json
