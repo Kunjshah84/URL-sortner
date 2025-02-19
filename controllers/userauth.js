@@ -24,12 +24,14 @@ async function handleuserslogin(req,res){
         email : email ,
         password : password
     })
-    // console.log(user)
+    // console.log("savathi pahela",user);
+    // console.log("This is the user finded one after the login",user)
     if(!user)    return res.render('login' , {
         error : 'Invalide mail or password'
     })
     // const sessionid=uuidv4() 
-    const token = setuser(user)
+    const token = setuser(user)    
+    // console.log(user);
     //Here we are able to set the domain where we have to set the cookies:
     // res.cookie('uid' , token , {
     //     domain:"https://www.google.com/"
@@ -38,13 +40,13 @@ async function handleuserslogin(req,res){
     // })
     //And we can even set the expire date of the cookie:
     
-    // res.cookie('uid' , token)
+    res.cookie('token' , token)
 
-    return res.json({ token })
+    // return res.json({ token })
     //And now we have two ways to send the tocken:
     // 1->>is to send through the cookie and it is going to set for every res and req
     // 2->>we have to manually set the token in the header of the res
-    // return res.status(200).redirect('/')
+    return res.status(200).redirect('/')
 
     //And the problem with cookie is that we can not use in rest api:
     //And in order to send the tocken and make them work in the mobile we can do this by sending the responce to the json

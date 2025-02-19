@@ -9,6 +9,7 @@ function setuser(user){
     return jwt.sign( {
         _id : user._id,
         email : user.email,
+        role : user.roles
     }, secret)//Here we have to make the serate key which is going to tell that this is the customer which is ours
 }
 
